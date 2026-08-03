@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Digital Student Card Survey — Dashboard</title>
@@ -22,53 +23,88 @@
     --shadow: 0 1px 2px rgba(16,24,40,0.06), 0 1px 3px rgba(16,24,40,0.08);
   }
   * { box-sizing: border-box; }
+  html { overflow-x: hidden; }
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
     padding: 2rem 1.5rem 4rem;
+    overflow-x: hidden;
   }
   .wrap { max-width: 1140px; margin: 0 auto; }
-  header.page-header { margin-bottom: 2rem; }
+  header.page-header { margin-bottom: 2rem; 
+    text-align: center;}
   header.page-header h1 {
-    font-size: 1.6rem;
-    margin: 0 0 0.35rem;
-    font-weight: 700;
+  margin: 0;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.15;
+  } 
+  header.page-header h2 {
+  margin: 0.35rem 0 0.9rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.3;
   }
-  header.page-header p {
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 0.92rem;
-  }
-  .stat-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 0.9rem;
-    margin-bottom: 2rem;
-  }
-  .stat-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1rem 1.1rem;
-    box-shadow: var(--shadow);
-  }
-  .stat-card .num { font-size: 1.6rem; font-weight: 700; line-height: 1.1; }
-  .stat-card .label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem; }
-  .stat-card.excluded .num { color: var(--no); }
-  .stat-card.kept .num { color: var(--accent); }
+ header.page-header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
     gap: 1.25rem;
   }
+  .summary {
+  margin: 1.2rem 0 2rem;
+  text-align: center;
+}
+
+.summary .count {
+  display: inline-block;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.summary .label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.methodology {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.methodology h3 {
+  margin: 0 0 .5rem;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.methodology p {
+  margin: 0;
+}
   .card {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 1.4rem 1.5rem;
     box-shadow: var(--shadow);
+    min-width: 0;
   }
   .card h2 {
     font-size: 1rem;
@@ -94,16 +130,18 @@
   .comment-card {
     background: var(--accent-soft);
     border-radius: 8px;
-    padding: 0.7rem 0.9rem;
+    padding: 0.75rem 0.95rem;
     font-size: 0.88rem;
     line-height: 1.45;
     color: #312e81;
     white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
   .empty-msg { color: var(--text-muted); font-size: 0.88rem; font-style: italic; }
   .contact-row {
     display: flex;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
     margin-top: 0.5rem;
   }
   .contact-pill {
@@ -113,6 +151,7 @@
     padding: 0.4rem 0.9rem;
     font-size: 0.85rem;
     font-weight: 600;
+    white-space: nowrap;
   }
   footer {
     text-align: center;
@@ -120,56 +159,62 @@
     font-size: 0.78rem;
     margin-top: 2.5rem;
   }
+
+  /* ---- Mobile tweaks (phones like iPhone SE, ~375px wide) ---- */
+  @media (max-width: 600px) {
+    body { padding: 1.1rem 0.9rem 3rem; }
+    header.page-header h1 { font-size: 1.25rem; }
+    header.page-header p { font-size: 0.82rem; }
+    .grid { gap: 0.9rem; }
+    .card { padding: 1rem 1.1rem; }
+    .card h2 { font-size: 0.92rem; }
+    .chart-box { height: 220px; }
+    .chart-box.tall { height: 320px; }
+    .comment-list { max-height: 260px; }
+    .comment-card { font-size: 0.84rem; padding: 0.65rem 0.8rem; }
+    .contact-row { gap: 0.6rem; }
+  }
 </style>
 </head>
 <body>
+<iframe src="logo.html"
+        style="width:100%; height:200px; border:none; display:block;"
+        title="Logo">
+</iframe>
 <div class="wrap">
 
   <header class="page-header">
-    <h1>Digital Student Card Survey — Results Dashboard</h1>
-    <p>Generated 2026-08-03 18:59</p>
+    <h1>Survey Results </h1>
+    <h2>Introducing an Optional Physical Student Card</h2>
+    <p>Generated 2026-08-03 22:12</p>
   </header>
 
-  <div class="stat-row">
-    <div class="stat-card">
-      <div class="num">93</div>
-      <div class="label">Total submissions received</div>
-    </div>
-    <div class="stat-card excluded">
-      <div class="num">9</div>
-      <div class="label">Excluded — survey preview</div>
-    </div>
-    <div class="stat-card excluded">
-      <div class="num">9</div>
-      <div class="label">Excluded — under 50% complete</div>
-    </div>
-    <div class="stat-card kept">
-      <div class="num">75</div>
-      <div class="label">Included in this analysis</div>
-    </div>
-  </div>
+  <div class="summary">
+    <span class="count">75</span>
+    <span class="label">responses included in this analysis</span>
+</div>
 
   <div class="grid">
 
-    <div class="card">
+    <div class="card" data-qnum="Q1">
       <h2>If the UU offered an optional physical student card, would you request it?</h2>
       <p class="sub">n = 75</p>
       <div class="chart-box"><canvas id="chartQ1"></canvas></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-qnum="Q4">
       <h2>If you could request a physical student card but would have to contribute towards the cost of printing it, would you?</h2>
       <p class="sub">n = 75</p>
       <div class="chart-box"><canvas id="chartQ4"></canvas></div>
     </div>
 
-    <div class="card full">
+    <div class="card full" data-qnum="Q2">
       <h2>Why? (selected choice)</h2>
       <p class="sub">69 respondents selected at least one reason &middot; multiple selections allowed</p>
       <div class="chart-box tall"><canvas id="chartQ2"></canvas></div>
     </div>
 
-    <div class="card">
+    <div class="card" data-qnum="Q2_8_TEXT">
       <h2>Why? — “Another reason” (free text)</h2>
       <p class="sub">12 free-text responses</p>
       <div class="comment-list">
@@ -194,18 +239,17 @@ Also, I wouldnt find it nearly as annoying if you didnt need to log in and 2fa e
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-qnum="Q16">
       <h2>How much would you be willing to pay?</h2>
       <p class="sub">n = 64 (only asked of those willing to contribute)</p>
       <div class="chart-box"><canvas id="chartQ16"></canvas></div>
     </div>
 
-    <div class="card full">
+    <div class="card full" data-qnum="Q5">
       <h2>Comments, suggestions, or questions regarding the digital-only student card policy (optional)</h2>
-      <p class="sub">20 comments left</p>
+      <p class="sub">19 comments left</p>
       <div class="comment-list">
-        <div class="comment-card">Best of luck victor, much love</div>
-<div class="comment-card">I&#x27;d love the &quot;opt in&quot; version where you can pay a bit of money and get the card. Would also be awesome if the library could use it as well as the printers. It has to be opt in, cause I think many students don&#x27;t care for one (or would lose it), but I lost the one I had as a TA and have been missing it a bunch ever since. Also when traveling and needing to verify student status they often don&#x27;t agree with a online document :(</div>
+        <div class="comment-card">I&#x27;d love the &quot;opt in&quot; version where you can pay a bit of money and get the card. Would also be awesome if the library could use it as well as the printers. It has to be opt in, cause I think many students don&#x27;t care for one (or would lose it), but I lost the one I had as a TA and have been missing it a bunch ever since. Also when traveling and needing to verify student status they often don&#x27;t agree with a online document :(</div>
 <div class="comment-card">I think physical objects are important to maintain as an asset class for humanity. I think being a student at UU is valuable enough to warrant more than a digital value in 1s and 0s. Do not use plastic waste as an excuse to digitalize every aspect of society.</div>
 <div class="comment-card">I’d love to have a physical card.</div>
 <div class="comment-card">I think it’s a great environmental choice for the cards to be digital.</div>
@@ -230,7 +274,7 @@ And while we&#x27;re at it, please also consider giving more options for 2FA tha
       </div>
     </div>
 
-    <div class="card full">
+    <div class="card full" data-qnum="Q9,Q11">
       <h2>Optional contact info</h2>
       <p class="sub">Respondents could optionally leave their name/e-mail for follow-up. Shown as counts only.</p>
       <div class="contact-row">
@@ -240,12 +284,18 @@ And while we&#x27;re at it, please also consider giving more options for 2FA tha
     </div>
 
   </div>
-
-  <footer>Preview responses and submissions under 50% progress were excluded from all figures above.</footer>
+  <div class="methodology">
+    <h3>Methodology</h3>
+    <p>
+        This report summarizes <strong>75</strong> survey responses.
+        Responses with less than 50% completion were also excluded from the analysis
+        (9 responses).
+    </p>
+</div>
 </div>
 
 <script>
-const DATA = {"q1": {"labels": ["Yes", "Maybe", "No"], "counts": [63, 6, 6]}, "q4": {"labels": ["Yes", "Maybe", "No"], "counts": [49, 18, 8]}, "q2": {"labels": ["I want to be able to access buildings and prove my student status if my phone is out of battery", "I think the university should be less dependent on digital infrastructure", "I would like to be able to access student buildings without needing to carry my smartphone with me", "I would like to be able to access buildings and prove my student status without needing access to 4G", "I want to spend less time on my phone", "I think a physical card would be a nice memento of my time at university", "All of the above", "Another reason:"], "counts": [43, 39, 38, 33, 32, 32, 22, 12], "answered": 69}, "q2_other": ["Also easier to prove/show you are a student for gettings discounts for e.g. excursions", "Also nice for discounts in other countries. It has happened to me that they would not accept my digital card as proof of being a student, and that I missed out on deals/opportuniteit to visit musea for example or other cultural activities.", "I despise the deeply integrated IT infrastructure. I'd compare the UU to a smart toaster that can't work because it has to update its software to include artificial intelligence.", "'- the digital student card does not have the EU certified student card logo and is fully in Dutch, making it difficult to use it to get a student discount outside of the Netherlands (for example to access a museum while on vacation). Often, it kind of ends up like \"I'm a student, just trust me. My university doesn't offer physical student cards for some reason\" and then it's up to the poor employee having to judge whether or not I'm lying. It is awkward, frustrating, and entirely avoidable by simply having an internationally recognised card like everyone else.\n\n- loading the app, logging in, and using the 2FA takes a lot of time, which often results in me causing a delay and making people wait. This creates frustration in me, the person serving me and people behind me in line. If I'm on my phone in line to open it in advance that's rude, if I don't have it open yet that's also rude. You cannot win. And ofc there is the often recurring frustrating situation where an employee asks for my student card, I go to open the app, this takes forever, a line forms behind me, and RIGHT as I'm almost there, the employee goes \"Never mind, I believe you're a student\". In short, the long time it takes to start up makes it frustrating and unpleasant to use, causing trouble to not just myself but also others.\n\n- It is above here as well, but I cannot stress enough how annoying it is to need to have a charged phone with access to wifi or 4G on you at all times. It makes navigating the world if your phone dies or breaks, or if you're in a place without 4G or wifi nearly impossible. Not to mention that not everyone can afford unlimited data. And especially when studying! It is well-known that having your phone on your person when studying makes it harder to concentrate. The n1 study tip every professional gives is to put your phone in a different room. What does the university do? Make this physically impossible! It makes no sense to me.", "Convenience, due to the forced login+2FA required to access the digital card (~40s)", "When I have been in foreign countries, I sometimes don\u2019t have 4G and then it doesn\u2019t work. Even if it does work, I have often had it that the person looking at the app either does not understand what is going on or does not speak English or Dutch. I am then unable to use it, or, for instance, have gotten fined on public transport for having a student ticket when I am unable to prove that I am one.", "I have made a deliberate choice not to have a smartphone anymore due to distractions. It is a hassel to get into the library without one. It would be nice to still be able to prove my identity without the use of a smartphone", "I don't have any mobile phone, just a landline", "I don't have a smartphone, so I have to use a printout of my declaration of enrollment. This does not get accepted all of the time.", "I don't have a smartphone so I have to carry a printed version of my enrollment in my pocket which breaks down over time due to moist and the scrubbing of clothing. Oh and by the way, if you want to print it you have to make a screenshot of the enrollment in Osiris which you have to put in a new document, for you do not have the rights to print it straight away.", "By the way, this dependence on digital infrastructure does unfortunately not only apply to the university. On the one hand there are concerns that, children and students spend too much time on their smartphones, on the other hand society, and UU being a frontrunner, implements more and more dependencies on technology.", "Especially when travelling abroad, lots of things like museums require student cards for discounts. This often at remote places where internet is hard to come by.\n\nAlso, I wouldnt find it nearly as annoying if you didnt need to log in and 2fa each time you wanted to show your card. Even in the queue for Artis lately, I had to show my student card. Oh one second let me just enter my number and password and 2fa and code and whatever, all just to show my card."], "q16": {"labels": ["0 EUR", "Less than 5 EUR", "Between 5 and 10 EUR", "Between 10 and 15 EUR", "More than 15 EUR"], "counts": [1, 22, 31, 7, 3], "answered": 64}, "q5_comments": ["Best of luck victor, much love", "I'd love the \"opt in\" version where you can pay a bit of money and get the card. Would also be awesome if the library could use it as well as the printers. It has to be opt in, cause I think many students don't care for one (or would lose it), but I lost the one I had as a TA and have been missing it a bunch ever since. Also when traveling and needing to verify student status they often don't agree with a online document :(", "I think physical objects are important to maintain as an asset class for humanity. I think being a student at UU is valuable enough to warrant more than a digital value in 1s and 0s. Do not use plastic waste as an excuse to digitalize every aspect of society.", "I\u2019d love to have a physical card.", "I think it\u2019s a great environmental choice for the cards to be digital.", "I think making it necessary to have a smartphone is badd :(", "Getting a personal physical card should be an option for students, but certainly not treated as a default.", "I do not like it", "It's about time someone took an interest into this matter. Make some noise.", "If they insist on keeping a digital-only student card, then at the very least make it work offline. \nSoftware that unnecessarily phones home is a big no-no.", "That digital-only is too strict, digital-default makes more sense", "Please start offering a variety of options. It's fine if the online card is the only free one, but let students pick which option serves them and their needs best.\n\nAnd while we're at it, please also consider giving more options for 2FA than just the one that requires a smartphone. I understand that via text is more likely to be intercepted, but if it's safe enough for access to government agencies like DUO and the belastingdienst, it's also safe enough for access to a student's grades or homework. If the text option is only available for the app and Brightspace, which students use daily, but not for Osiris, which carries the most sensitive information, I think that would already be a win.", "The university makes the argument that it is somehow easy to fake a student ID card. However, it is way, WAY easier to fake a letter of enrollment. On top of that, they make an argument that the cards are hard to retract. I disagree! If you need to scan your card when you come in and the computer checks against a central database, then erasing an entry is trivial. Boom! Card de-activated. The current system is also easy to fake, since you can take a screenshot and put that on your phone. You can even edit the screenshot. I can say from experience that this method works, which is not possible with a physical card that you scan. What a dumb reasoning!", "Unpleasant manifestation of bureaucracy and overextended will to safety (which cumulatively must constitute a few years wasted for every academic year, assuming one has to use it at least once a week).", "I don't really understand why it's \"logistically difficult\" due to the production and distribution, if they were able to do it before for everyone. Requesting it on a site and then picking it up at a service desk doesn't seem that difficult, so I wonder why they say there aren't any good options", "I understand that the university does not give out physical cards to all students, however I think that there should be an option for students to get some form of a physical student ID", "It's very weird.", "It is unfair to people without a smartphone", "Like I said, the UU should be more careful with enforcing digital dependencies and use of smartphones in specific. On the one hand UU warns against the risks of smarthpone use, on the other hand it enforces students to always have a smartphone with them. Who benefits? It is mainly in the interest of the UU (for example, efficiency, financial costs) and they use, as always, the argument of safety. And hey, who is against safety?", "If it is digital, at least let it work without internet and 2fa. Maybe even separate the card from the grades and stuff in the myuu app so you need to log in for the grades, but the card always works."], "name_count": 25, "email_count": 20};
+const DATA = {"q1": {"labels": ["Yes", "Maybe", "No"], "counts": [63, 6, 6]}, "q4": {"labels": ["Yes", "Maybe", "No"], "counts": [49, 18, 8]}, "q2": {"labels": ["I want to be able to access buildings and prove my student status if my phone is out of battery", "I think the university should be less dependent on digital infrastructure", "I would like to be able to access student buildings without needing to carry my smartphone with me", "I would like to be able to access buildings and prove my student status without needing access to 4G", "I want to spend less time on my phone", "I think a physical card would be a nice memento of my time at university", "All of the above", "Another reason:"], "counts": [43, 39, 38, 33, 32, 32, 22, 12], "answered": 69}, "q2_other": ["Also easier to prove/show you are a student for gettings discounts for e.g. excursions", "Also nice for discounts in other countries. It has happened to me that they would not accept my digital card as proof of being a student, and that I missed out on deals/opportuniteit to visit musea for example or other cultural activities.", "I despise the deeply integrated IT infrastructure. I'd compare the UU to a smart toaster that can't work because it has to update its software to include artificial intelligence.", "'- the digital student card does not have the EU certified student card logo and is fully in Dutch, making it difficult to use it to get a student discount outside of the Netherlands (for example to access a museum while on vacation). Often, it kind of ends up like \"I'm a student, just trust me. My university doesn't offer physical student cards for some reason\" and then it's up to the poor employee having to judge whether or not I'm lying. It is awkward, frustrating, and entirely avoidable by simply having an internationally recognised card like everyone else.\n\n- loading the app, logging in, and using the 2FA takes a lot of time, which often results in me causing a delay and making people wait. This creates frustration in me, the person serving me and people behind me in line. If I'm on my phone in line to open it in advance that's rude, if I don't have it open yet that's also rude. You cannot win. And ofc there is the often recurring frustrating situation where an employee asks for my student card, I go to open the app, this takes forever, a line forms behind me, and RIGHT as I'm almost there, the employee goes \"Never mind, I believe you're a student\". In short, the long time it takes to start up makes it frustrating and unpleasant to use, causing trouble to not just myself but also others.\n\n- It is above here as well, but I cannot stress enough how annoying it is to need to have a charged phone with access to wifi or 4G on you at all times. It makes navigating the world if your phone dies or breaks, or if you're in a place without 4G or wifi nearly impossible. Not to mention that not everyone can afford unlimited data. And especially when studying! It is well-known that having your phone on your person when studying makes it harder to concentrate. The n1 study tip every professional gives is to put your phone in a different room. What does the university do? Make this physically impossible! It makes no sense to me.", "Convenience, due to the forced login+2FA required to access the digital card (~40s)", "When I have been in foreign countries, I sometimes don\u2019t have 4G and then it doesn\u2019t work. Even if it does work, I have often had it that the person looking at the app either does not understand what is going on or does not speak English or Dutch. I am then unable to use it, or, for instance, have gotten fined on public transport for having a student ticket when I am unable to prove that I am one.", "I have made a deliberate choice not to have a smartphone anymore due to distractions. It is a hassel to get into the library without one. It would be nice to still be able to prove my identity without the use of a smartphone", "I don't have any mobile phone, just a landline", "I don't have a smartphone, so I have to use a printout of my declaration of enrollment. This does not get accepted all of the time.", "I don't have a smartphone so I have to carry a printed version of my enrollment in my pocket which breaks down over time due to moist and the scrubbing of clothing. Oh and by the way, if you want to print it you have to make a screenshot of the enrollment in Osiris which you have to put in a new document, for you do not have the rights to print it straight away.", "By the way, this dependence on digital infrastructure does unfortunately not only apply to the university. On the one hand there are concerns that, children and students spend too much time on their smartphones, on the other hand society, and UU being a frontrunner, implements more and more dependencies on technology.", "Especially when travelling abroad, lots of things like museums require student cards for discounts. This often at remote places where internet is hard to come by.\n\nAlso, I wouldnt find it nearly as annoying if you didnt need to log in and 2fa each time you wanted to show your card. Even in the queue for Artis lately, I had to show my student card. Oh one second let me just enter my number and password and 2fa and code and whatever, all just to show my card."], "q16": {"labels": ["0 EUR", "Less than 5 EUR", "Between 5 and 10 EUR", "Between 10 and 15 EUR", "More than 15 EUR"], "counts": [1, 22, 31, 7, 3], "answered": 64}, "q5_comments": ["I'd love the \"opt in\" version where you can pay a bit of money and get the card. Would also be awesome if the library could use it as well as the printers. It has to be opt in, cause I think many students don't care for one (or would lose it), but I lost the one I had as a TA and have been missing it a bunch ever since. Also when traveling and needing to verify student status they often don't agree with a online document :(", "I think physical objects are important to maintain as an asset class for humanity. I think being a student at UU is valuable enough to warrant more than a digital value in 1s and 0s. Do not use plastic waste as an excuse to digitalize every aspect of society.", "I\u2019d love to have a physical card.", "I think it\u2019s a great environmental choice for the cards to be digital.", "I think making it necessary to have a smartphone is badd :(", "Getting a personal physical card should be an option for students, but certainly not treated as a default.", "I do not like it", "It's about time someone took an interest into this matter. Make some noise.", "If they insist on keeping a digital-only student card, then at the very least make it work offline. \nSoftware that unnecessarily phones home is a big no-no.", "That digital-only is too strict, digital-default makes more sense", "Please start offering a variety of options. It's fine if the online card is the only free one, but let students pick which option serves them and their needs best.\n\nAnd while we're at it, please also consider giving more options for 2FA than just the one that requires a smartphone. I understand that via text is more likely to be intercepted, but if it's safe enough for access to government agencies like DUO and the belastingdienst, it's also safe enough for access to a student's grades or homework. If the text option is only available for the app and Brightspace, which students use daily, but not for Osiris, which carries the most sensitive information, I think that would already be a win.", "The university makes the argument that it is somehow easy to fake a student ID card. However, it is way, WAY easier to fake a letter of enrollment. On top of that, they make an argument that the cards are hard to retract. I disagree! If you need to scan your card when you come in and the computer checks against a central database, then erasing an entry is trivial. Boom! Card de-activated. The current system is also easy to fake, since you can take a screenshot and put that on your phone. You can even edit the screenshot. I can say from experience that this method works, which is not possible with a physical card that you scan. What a dumb reasoning!", "Unpleasant manifestation of bureaucracy and overextended will to safety (which cumulatively must constitute a few years wasted for every academic year, assuming one has to use it at least once a week).", "I don't really understand why it's \"logistically difficult\" due to the production and distribution, if they were able to do it before for everyone. Requesting it on a site and then picking it up at a service desk doesn't seem that difficult, so I wonder why they say there aren't any good options", "I understand that the university does not give out physical cards to all students, however I think that there should be an option for students to get some form of a physical student ID", "It's very weird.", "It is unfair to people without a smartphone", "Like I said, the UU should be more careful with enforcing digital dependencies and use of smartphones in specific. On the one hand UU warns against the risks of smarthpone use, on the other hand it enforces students to always have a smartphone with them. Who benefits? It is mainly in the interest of the UU (for example, efficiency, financial costs) and they use, as always, the argument of safety. And hey, who is against safety?", "If it is digital, at least let it work without internet and 2fa. Maybe even separate the card from the grades and stuff in the myuu app so you need to log in for the grades, but the card always works."], "name_count": 25, "email_count": 20};
 
 function baseOptions(extra) {
   return Object.assign({

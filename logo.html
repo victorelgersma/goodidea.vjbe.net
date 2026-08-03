@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logo</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        --var-uu-color: #ffcd00;
+      }
+
+      body {
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 12px;
+        width: 100%;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      .logo-container {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+
+        border: 3px solid #3e2723;
+        padding: 18px 24px;
+        border-radius: 12px;
+        background: #fff;
+      }
+
+      /* Top line: "a good" in Cursive with fluid sizing */
+      .line-top {
+        font-family: "Fraunces", cursive;
+        font-size: clamp(2rem, 8vw, 2.8rem);
+        color: #3e2723;
+        white-space: nowrap;
+      }
+
+      /* Bottom line container */
+      .line-bottom {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        margin-top: -0.1em;
+        white-space: nowrap;
+      }
+
+      /* "ID" - Scaled fluidly for narrow screens */
+      .highlight-id {
+        font-family: "Inter", sans-serif;
+        font-size: clamp(2.2rem, 9.5vw, 3.2rem);
+        font-weight: 900;
+        color: var(--var-uu-color);
+        letter-spacing: 0.5px;
+        -webkit-text-stroke: 2px #000;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+        line-height: 1;
+      }
+
+      /* "ea" - Cursive continuation of "IDea" */
+      .cursive-ea {
+        font-family: "Fraunces", serif;
+        font-size: clamp(2.6rem, 11vw, 3.8rem);
+        color: #3e2723;
+        margin-left: 1px;
+        line-height: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo-container">
+      <div class="line-top">a good</div>
+      <div class="line-bottom">
+        <span class="highlight-id">ID</span><span class="cursive-ea">ea</span>
+      </div>
+    </div>
+  </body>
+</html>

@@ -8,11 +8,16 @@
       @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap");
       @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
+      :root {
+        --var-uu-color: #ffcd00; /* background accent */
+        --var-id-orange: #c45100; /* darker orange for ID */
+        --var-brown: #3e2723; /* text/border */
+      }
+
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        --var-uu-color: #ffcd00;
       }
 
       body {
@@ -31,12 +36,11 @@
         flex-direction: column;
         align-items: center;
 
-        border: 3px solid #3e2723;
+        border: 3px solid var(--var-brown);
         padding: 18px 24px;
         border-radius: 12px;
-        background: #fff;
+        background: var(--var-uu-color);
       }
-
       /* Top line: "a good" in Cursive with fluid sizing */
       .line-top {
         font-family: "Fraunces", cursive;
@@ -45,6 +49,10 @@
         white-space: nowrap;
       }
 
+      .line-top,
+      .cursive-ea {
+        color: var(--var-brown);
+      }
       /* Bottom line container */
       .line-bottom {
         display: flex;
@@ -59,10 +67,9 @@
         font-family: "Inter", sans-serif;
         font-size: clamp(2.2rem, 9.5vw, 3.2rem);
         font-weight: 900;
-        color: var(--var-uu-color);
+        color: var(--var-id-orange);
         letter-spacing: 0.5px;
-        -webkit-text-stroke: 2px #000;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         line-height: 1;
       }
 

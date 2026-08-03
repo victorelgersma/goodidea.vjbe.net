@@ -23,7 +23,7 @@ from html import escape
 QUESTION_LABELS = {
     "Q1": "If the UU offered an optional physical student card, would you request it?",
     "Q2": "Why? (selected choice)",
-    "Q2_8_TEXT": "Why? — \u201cAnother reason\u201d (free text)",
+    "Q2_8_TEXT": "Additional Reasons",
     "Q4": "If you could request a physical student card but would have to contribute "
           "towards the cost of printing it, would you?",
     "Q16": "How much would you be willing to pay?",
@@ -400,13 +400,6 @@ def render_html(data, meta, source_filename):
       <p class="sub">n = {total_kept}</p>
       <div class="chart-box"><canvas id="chartQ1"></canvas></div>
     </div>
-
-    <div class="card" data-qnum="Q4">
-      <h2>{escape(QUESTION_LABELS["Q4"])}</h2>
-      <p class="sub">n = {total_kept}</p>
-      <div class="chart-box"><canvas id="chartQ4"></canvas></div>
-    </div>
-
     <div class="card full" data-qnum="Q2">
       <h2>{escape(QUESTION_LABELS["Q2"])}</h2>
       <p class="sub">{data["q2"]["answered"]} respondents selected at least one reason &middot; multiple selections allowed</p>
@@ -419,6 +412,12 @@ def render_html(data, meta, source_filename):
       <div class="comment-list">
         {other_reasons_html}
       </div>
+    </div>
+
+    <div class="card" data-qnum="Q4">
+      <h2>{escape(QUESTION_LABELS["Q4"])}</h2>
+      <p class="sub">n = {total_kept}</p>
+      <div class="chart-box"><canvas id="chartQ4"></canvas></div>
     </div>
 
     <div class="card" data-qnum="Q16">

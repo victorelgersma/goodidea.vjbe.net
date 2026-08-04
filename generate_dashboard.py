@@ -12,6 +12,7 @@ Usage:
     generate_dashboard.py <input.csv> <output.html>
 """
 
+from pathlib import Path
 import csv
 import json
 import sys
@@ -23,7 +24,7 @@ from html import escape
 QUESTION_LABELS = {
     "Q1": "If the UU offered an optional physical student card, would you request it?",
     "Q2": "Why? (selected choice)",
-    "Q2_8_TEXT": "Additional Reasons",
+    "Q2_8_TEXT": "Another reason:",
     "Q4": "If you could request a physical student card but would have to contribute "
           "towards the cost of printing it, would you?",
     "Q16": "How much would you be willing to pay?",
@@ -51,6 +52,17 @@ SKIP_COMMENT_INDEXES = {
     "Q5": {1},
 }
 
+
+def load_css():
+    """Load dashboard styles from style.css next to this script."""
+    css_path = Path(__file__).with_name("style.css")
+
+    if not css_path.exists():
+        raise FileNotFoundError(
+            f"Missing stylesheet: {css_path}"
+        )
+
+    return css_path.read_text(encoding="utf-8")
 
 def load_rows(path):
     """Read the Qualtrics export, skipping the two extra header rows."""
@@ -172,6 +184,7 @@ def build_dashboard_data(rows):
 
 def render_html(data, meta, source_filename):
     generated_at = datetime.now().strftime("%Y-%m-%d %H:%M")
+    css = load_css()
     data_json = json.dumps(data)
 
     def comment_list_html(items, empty_msg):
@@ -205,192 +218,37 @@ def render_html(data, meta, source_filename):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Digital Student Card Survey — Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-  :root {{
-    --bg: #f5f6f8;
-    --card: #ffffff;
-    --border: #e3e5e9;
-    --text: #1a1d21;
-    --text-muted: #6b7280;
-    --accent: #4f46e5;
-    --accent-soft: #eef2ff;
-    --yes: #4f46e5;
-    --maybe: #f59e0b;
-    --no: #ef4444;
-    --other: #94a3b8;
-    --radius: 12px;
-    --shadow: 0 1px 2px rgba(16,24,40,0.06), 0 1px 3px rgba(16,24,40,0.08);
-  }}
-  * {{ box-sizing: border-box; }}
-  html {{ overflow-x: hidden; }}
-  body {{
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    padding: 2rem 1.5rem 4rem;
-    overflow-x: hidden;
-  }}
-  .wrap {{ max-width: 1140px; margin: 0 auto; }}
-  header.page-header {{ margin-bottom: 2rem; 
-    text-align: center;}}
-  header.page-header h1 {{
-  margin: 0;
-  font-size: 2.1rem;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.15;
-  }} 
-  header.page-header h2 {{
-  margin: 0.35rem 0 0.9rem;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  line-height: 1.3;
-  }}
- header.page-header p {{
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}}
-  .grid {{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
-    gap: 1.25rem;
-  }}
-  .summary {{
-  margin: 1.2rem 0 2rem;
-  text-align: center;
-}}
-
-.summary .count {{
-  display: inline-block;
-  font-size: 2.4rem;
-  font-weight: 800;
-  color: var(--accent);
-  line-height: 1;
-}}
-
-.summary .label {{
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 1rem;
-  color: var(--text-muted);
-}}
-
-.methodology {{
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}}
-
-.methodology h3 {{
-  margin: 0 0 .5rem;
-  color: var(--text);
-  font-size: 1rem;
-  font-weight: 600;
-}}
-
-.methodology p {{
-  margin: 0;
-}}
-  .card {{
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.4rem 1.5rem;
-    box-shadow: var(--shadow);
-    min-width: 0;
-  }}
-  .card h2 {{
-    font-size: 1rem;
-    margin: 0 0 0.15rem;
-    font-weight: 650;
-  }}
-  .card .sub {{
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin: 0 0 1rem;
-  }}
-  .card.full {{ grid-column: 1 / -1; }}
-  .chart-box {{ position: relative; height: 280px; }}
-  .chart-box.tall {{ height: 340px; }}
-  .comment-list {{
-    max-height: 340px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    padding-right: 0.25rem;
-  }}
-  .comment-card {{
-    background: var(--accent-soft);
-    border-radius: 8px;
-    padding: 0.75rem 0.95rem;
-    font-size: 0.88rem;
-    line-height: 1.45;
-    color: #312e81;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-  }}
-  .empty-msg {{ color: var(--text-muted); font-size: 0.88rem; font-style: italic; }}
-  .contact-row {{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem 1.5rem;
-    margin-top: 0.5rem;
-  }}
-  .contact-pill {{
-    background: var(--accent-soft);
-    color: var(--accent);
-    border-radius: 999px;
-    padding: 0.4rem 0.9rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    white-space: nowrap;
-  }}
-  footer {{
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.78rem;
-    margin-top: 2.5rem;
-  }}
-
-  /* ---- Mobile tweaks (phones like iPhone SE, ~375px wide) ---- */
-  @media (max-width: 600px) {{
-    body {{ padding: 1.1rem 0.9rem 3rem; }}
-    header.page-header h1 {{ font-size: 1.25rem; }}
-    header.page-header p {{ font-size: 0.82rem; }}
-    .grid {{ gap: 0.9rem; }}
-    .card {{ padding: 1rem 1.1rem; }}
-    .card h2 {{ font-size: 0.92rem; }}
-    .chart-box {{ height: 220px; }}
-    .chart-box.tall {{ height: 320px; }}
-    .comment-list {{ max-height: 260px; }}
-    .comment-card {{ font-size: 0.84rem; padding: 0.65rem 0.8rem; }}
-    .contact-row {{ gap: 0.6rem; }}
-  }}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <iframe src="logo.html"
-        style="width:100%; height:200px; border:none; display:block;"
+        style="width:100%; border:none; display:block;"
         title="Logo">
-</iframe>
+</iframe> 
+<nav>
+<ul>
+<li>
+    <a href="https://survey.uu.nl/jfe/form/SV_eWjarcbWuvJP2Z0">survey</a>
+ </li>
+ <li>
+    <a href="/about.html">about</a> 
+ </li>
+ <li>
+    <a href="/">results</a>
+ </li>
+</ul>
+</nav>
+
 <div class="wrap">
 
   <header class="page-header">
     <h1>Survey Results </h1>
     <h2>Introducing an Optional Physical Student Card</h2>
-    <p>Generated {generated_at}</p>
   </header>
 
   <div class="summary">
     <span class="count">{total_kept}</span>
-    <span class="label">responses included in this analysis</span>
+    <span class="label">responses</span>
 </div>
 
   <div class="grid">
@@ -403,9 +261,8 @@ def render_html(data, meta, source_filename):
     <div class="card full" data-qnum="Q2">
       <h2>{escape(QUESTION_LABELS["Q2"])}</h2>
       <p class="sub">{data["q2"]["answered"]} respondents selected at least one reason &middot; multiple selections allowed</p>
-      <div class="chart-box tall"><canvas id="chartQ2"></canvas></div>
+      <div class="reason-list tall" id="q2Reasons"></div>
     </div>
-
     <div class="card" data-qnum="Q2_8_TEXT">
       <h2>{escape(QUESTION_LABELS["Q2_8_TEXT"])}</h2>
       <p class="sub">{len(data["q2_other"])} free-text responses</p>
@@ -413,6 +270,7 @@ def render_html(data, meta, source_filename):
         {other_reasons_html}
       </div>
     </div>
+
 
     <div class="card" data-qnum="Q4">
       <h2>{escape(QUESTION_LABELS["Q4"])}</h2>
@@ -451,6 +309,7 @@ def render_html(data, meta, source_filename):
         Responses with less than 50% completion were also excluded from the analysis
         ({incomplete_excluded} response{"s" if incomplete_excluded != 1 else ""}).
     </p>
+    <p>Results generated at {generated_at}</p>
 </div>
 </div>
 
@@ -488,17 +347,29 @@ new Chart(document.getElementById('chartQ4'), {{
   options: baseOptions({{ plugins: {{ legend: {{ display: true, position: 'bottom' }} }} }})
 }});
 
-new Chart(document.getElementById('chartQ2'), {{
-  type: 'bar',
-  data: {{
-    labels: DATA.q2.labels,
-    datasets: [{{ data: DATA.q2.counts, backgroundColor: '#4f46e5', borderRadius: 4 }}]
-  }},
-  options: baseOptions({{
-    indexAxis: 'y',
-    scales: {{ x: {{ beginAtZero: true, ticks: {{ precision: 0 }} }} }}
-  }})
+
+
+const q2Container = document.getElementById("q2Reasons");
+
+const maxQ2 = Math.max(...DATA.q2.counts);
+
+DATA.q2.labels.forEach((label, i) => {{
+  const row = document.createElement("div");
+  row.className = "reason-row";
+
+  const percent = (DATA.q2.counts[i] / maxQ2) * 100;
+
+  row.innerHTML = `
+    <div class="reason-label">${{label}}</div>
+    <div class="reason-bar-wrap">
+      <div class="reason-bar" style="width:${{percent}}%"></div>
+    </div>
+    <div class="reason-count">${{DATA.q2.counts[i]}}</div>
+  `;
+
+  q2Container.appendChild(row);
 }});
+
 
 new Chart(document.getElementById('chartQ16'), {{
   type: 'bar',

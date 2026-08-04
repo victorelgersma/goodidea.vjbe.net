@@ -8,6 +8,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 LOCAL_DASHBOARD="${SCRIPT_DIR}/dashboard.html"
 LOCAL_LOGO="${SCRIPT_DIR}/logo.html"
+LOCAL_ABOUT="${SCRIPT_DIR}/about.html"
+LOCAL_STYLE="${SCRIPT_DIR}/style.css"
 REMOTE_HOST="hetzner"
 REMOTE_DIR="~/html/agoodidea"
 
@@ -35,5 +37,9 @@ ssh "$REMOTE_HOST" "mkdir -p $REMOTE_DIR"
 echo "==> Uploading files to $REMOTE_HOST:$REMOTE_DIR..."
 rsync -avz --inplace "$LOCAL_DASHBOARD" "${REMOTE_HOST}:${REMOTE_DIR}/index.html"
 rsync -avz --inplace "$LOCAL_LOGO" "${REMOTE_HOST}:${REMOTE_DIR}/logo.html"
+rsync -avz --inplace "$LOCAL_ABOUT" "${REMOTE_HOST}:${REMOTE_DIR}/about.html"
+rsync -avz --inplace "$LOCAL_STYLE" "${REMOTE_HOST}:${REMOTE_DIR}/style.css"
 
 echo "==> Deployment complete!"
+
+echo "https://agoodidea.vjbe.net"

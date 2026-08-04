@@ -1,45 +1,57 @@
 #!/usr/bin/env bash
 #
 # deploy.sh
-# Deploy dashboard.html and logo.html to ~/html/agoodidea on the hetzner host.
+#
+# Deploys the dashboard application to the Hetzner host.
+#
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-LOCAL_DASHBOARD="${SCRIPT_DIR}/dashboard.html"
-LOCAL_LOGO="${SCRIPT_DIR}/logo.html"
-LOCAL_ABOUT="${SCRIPT_DIR}/about.html"
-LOCAL_STYLE="${SCRIPT_DIR}/style.css"
+
 REMOTE_HOST="hetzner"
 REMOTE_DIR="~/html/agoodidea"
 
-# Verify both local files exist before deploying
-missing_files=0
+FILES=(
+    "index.php"
+    "dashboard.php"
+    "dashboard.json"
+    "style.css"
+)
 
-if [[ ! -f "$LOCAL_DASHBOARD" ]]; then
-    echo "Error: local file not found: $LOCAL_DASHBOARD" >&2
-    echo "Run ./compile_dashboard.sh first to generate dashboard.html." >&2
-    missing_files=1
-fi
+echo "==> Checking local files..."
 
-if [[ ! -f "$LOCAL_LOGO" ]]; then
-    echo "Error: local file not found: $LOCAL_LOGO" >&2
-    missing_files=1
-fi
+for file in "${FILES[@]}"; do
+    if [[ ! -f "${SCRIPT_DIR}/${file}" ]]; then
+        echo "Error: missing local file: ${SCRIPT_DIR}/${file}" >&2
+        exit 1
+    fi
+done
 
-if [[ "$missing_files" -eq 1 ]]; then
+if [[ ! -d "${SCRIPT_DIR}/includes" ]]; then
+    echo "Error: missing includes directory." >&2
     exit 1
 fi
 
 echo "==> Ensuring remote directory exists..."
-ssh "$REMOTE_HOST" "mkdir -p $REMOTE_DIR"
+ssh "$REMOTE_HOST" "mkdir -p $REMOTE_DIR/includes"
 
-echo "==> Uploading files to $REMOTE_HOST:$REMOTE_DIR..."
-rsync -avz --inplace "$LOCAL_DASHBOARD" "${REMOTE_HOST}:${REMOTE_DIR}/index.html"
-rsync -avz --inplace "$LOCAL_LOGO" "${REMOTE_HOST}:${REMOTE_DIR}/logo.html"
-rsync -avz --inplace "$LOCAL_ABOUT" "${REMOTE_HOST}:${REMOTE_DIR}/about.html"
-rsync -avz --inplace "$LOCAL_STYLE" "${REMOTE_HOST}:${REMOTE_DIR}/style.css"
+echo "==> Uploading PHP files..."
+rsync -avz --inplace \
+    "${SCRIPT_DIR}/index.php" \
+    "${SCRIPT_DIR}/dashboard.php" \
+    "${REMOTE_HOST}:${REMOTE_DIR}/"
+
+echo "==> Uploading generated data and styles..."
+rsync -avz --inplace \
+    "${SCRIPT_DIR}/dashboard.json" \
+    "${SCRIPT_DIR}/style.css" \
+    "${REMOTE_HOST}:${REMOTE_DIR}/"
+
+echo "==> Uploading includes..."
+rsync -avz --inplace \
+    "${SCRIPT_DIR}/includes/" \
+    "${REMOTE_HOST}:${REMOTE_DIR}/includes/"
 
 echo "==> Deployment complete!"
-
 echo "https://agoodidea.vjbe.net"

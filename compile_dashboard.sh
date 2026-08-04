@@ -2,15 +2,15 @@
 #
 # compile_dashboard.sh
 #
-# Builds an HTML results dashboard from a Qualtrics survey CSV export.
-# Excludes "Survey Preview" rows and rows under 50% progress, then renders
-# charts (Chart.js) and comment lists for every question.
+# Builds dashboard JSON data from a Qualtrics survey CSV export.
+# Excludes "Survey Preview" rows and rows under 50% progress.
 #
 # Usage:
-#   ./compile_dashboard.sh <survey_export.csv> [output.html]
+#   ./compile_dashboard.sh <survey_export.csv> [output.json]
 #
-# Requires: bash >= 4 (associative arrays not actually used, but written
-#           against bash 5), python3 (standard library only, no deps).
+# Requires:
+#   bash >= 4
+#   python3
 
 set -euo pipefail
 
@@ -22,12 +22,12 @@ if (( BASH_VERSINFO[0] < 4 )); then
 fi
 
 if [[ $# -lt 1 || $# -gt 2 ]]; then
-    echo "Usage: $(basename "$0") <survey_export.csv> [output.html]" >&2
+    echo "Usage: $(basename "$0") <survey_export.csv> [output.json]" >&2
     exit 1
 fi
 
 input_csv="$1"
-output_html="${2:-dashboard.html}"
+output_json="${2:-dashboard.json}"
 
 if [[ ! -f "$input_csv" ]]; then
     echo "Error: input file not found: $input_csv" >&2
@@ -39,6 +39,7 @@ if ! command -v python3 &>/dev/null; then
     exit 1
 fi
 
-python3 "$SCRIPT_DIR/generate_dashboard.py" "$input_csv" "$output_html"
+echo "==> Generating dashboard JSON..."
+python3 "$SCRIPT_DIR/generate_dashboard.py" "$input_csv" "$output_json"
 
-echo "Done. Open $output_html in a browser to view the dashboard."
+echo "Done. Generated $output_json"

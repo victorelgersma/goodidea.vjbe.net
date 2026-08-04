@@ -468,55 +468,77 @@ footer {
 
 }
 
-nav {
-  margin: 1rem 0 2rem;
+/* -----------------------------
+   Landing page
+----------------------------- */
+
+.hero {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0;
-  margin: 0;
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: -0.05em;
+    margin-bottom: 1rem;
 }
 
-nav a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
+
+.hero-tagline {
+    max-width: 720px;
+    margin: 0 auto;
+
+    font-size: 1.25rem;
+    line-height: 1.5;
+
+    color: var(--text-muted);
 }
 
-nav a:hover {
-  text-decoration: underline;
-}
 
-.site-nav {
-    margin: 1rem 0 2rem;
-}
-
-.site-nav ul {
+.hero-actions {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+
     gap: 1rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+
+    margin-top: 2rem;
 }
 
-.site-nav a {
-    color: var(--text-muted);
+
+.button {
+    display: inline-block;
+
+    padding: 0.8rem 1.5rem;
+
+    border-radius: 999px;
+
     text-decoration: none;
-    font-weight: 600;
-    transition: color .15s;
+
+    font-weight: 700;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
 }
 
-.site-nav a:hover {
-    color: var(--accent);
+
+.button:hover {
+    transform: translateY(-2px);
 }
 
-.site-nav a.active {
+
+.button.primary {
+    background: var(--accent);
+    color: white;
+}
+
+
+.button.secondary {
+    background: white;
+
     color: var(--accent);
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: .2rem;
+
+    border: 1px solid var(--border);
 }

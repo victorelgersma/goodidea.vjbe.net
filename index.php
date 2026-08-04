@@ -27,10 +27,6 @@ if (file_exists($json_file)) {
 
     <section class="hero">
 
-        <h1>
-            A good ID(ea)
-        </h1>
-
         <p class="hero-tagline">
             A student-led campaign to introduce a physical student card alongside the <a
                 href="https://students.uu.nl/en/practical-information/enrolment/student-card"> digital one</a>, at the Universiteit Utrecht. 

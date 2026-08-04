@@ -37,10 +37,6 @@ function h($value) {
 
 <header class="page-header">
 
-    <h1>
-        A good ID(ea)
-    </h1>
-
     <h2>
         Student responses regarding an optional physical student card
     </h2>

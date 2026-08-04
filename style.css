@@ -490,3 +490,33 @@ nav a {
 nav a:hover {
   text-decoration: underline;
 }
+
+.site-nav {
+    margin: 1rem 0 2rem;
+}
+
+.site-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.site-nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color .15s;
+}
+
+.site-nav a:hover {
+    color: var(--accent);
+}
+
+.site-nav a.active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: .2rem;
+}

@@ -12,7 +12,6 @@ Usage:
     generate_dashboard.py <input.csv> <output.html>
 """
 
-from pathlib import Path
 import csv
 import json
 import sys
@@ -52,17 +51,6 @@ SKIP_COMMENT_INDEXES = {
     "Q5": {1},
 }
 
-
-def load_css():
-    """Load dashboard styles from style.css next to this script."""
-    css_path = Path(__file__).with_name("style.css")
-
-    if not css_path.exists():
-        raise FileNotFoundError(
-            f"Missing stylesheet: {css_path}"
-        )
-
-    return css_path.read_text(encoding="utf-8")
 
 def load_rows(path):
     """Read the Qualtrics export, skipping the two extra header rows."""
@@ -184,7 +172,6 @@ def build_dashboard_data(rows):
 
 def render_html(data, meta, source_filename):
     generated_at = datetime.now().strftime("%Y-%m-%d %H:%M")
-    css = load_css()
     data_json = json.dumps(data)
 
     def comment_list_html(items, empty_msg):
@@ -225,19 +212,8 @@ def render_html(data, meta, source_filename):
         style="width:100%; border:none; display:block;"
         title="Logo">
 </iframe> 
-<nav>
-<ul>
-<li>
-    <a href="https://survey.uu.nl/jfe/form/SV_eWjarcbWuvJP2Z0">survey</a>
- </li>
- <li>
-    <a href="/about.html">about</a> 
- </li>
- <li>
-    <a href="/">results</a>
- </li>
-</ul>
-</nav>
+<div id="site-nav"></div>
+<script src="nav.js"></script>
 
 <div class="wrap">
 

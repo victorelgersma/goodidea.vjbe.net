@@ -36,15 +36,13 @@ function h($value) {
 
 
 <header class="page-header">
+    <p class="back-home">
+    <a href="index.php">← Back home</a>
+</p>
 
     <h2>
         Student responses regarding an optional physical student card
     </h2>
-
-    <p>
-        Generated:
-        <?= h($data["meta"]["generated_at"]) ?>
-    </p>
 
 </header>
 
@@ -106,12 +104,14 @@ Would students request an optional physical card?
 
 <div class="card full">
 
-<h2>
-Other reasons
-</h2>
+<h2>Other reasons</h2>
 
+<a class="mobile-comments-link"
+   href="comments.php?type=q2">
+    View all <?= count($data["q2_other"]) ?> responses →
+</a>
 
-<div class="comment-list">
+<div class="comment-list desktop-only">
 
 <?php foreach ($data["q2_other"] as $comment): ?>
 
@@ -135,7 +135,7 @@ Other reasons
 </h2>
 
 <p class="sub">
-Would students contribute towards printing costs?
+Willingness to contribute to printing costs
 </p>
 
 
@@ -174,14 +174,18 @@ Amount respondents would pay
 
 <!-- Comments -->
 
-<div class="card full" data-qnum="Q5">
+<div class="card full">
 
 <h2>
 <?= h($data["questions"]["Q5"]) ?>
 </h2>
 
+<a class="mobile-comments-link"
+   href="comments.php?type=q5">
+    View all <?= count($data["q5_comments"]) ?> comments →
+</a>
 
-<div class="comment-list">
+<div class="comment-list desktop-only">
 
 <?php if (count($data["q5_comments"]) === 0): ?>
 
@@ -189,9 +193,7 @@ Amount respondents would pay
 No comments submitted.
 </p>
 
-
 <?php else: ?>
-
 
 <?php foreach ($data["q5_comments"] as $comment): ?>
 
@@ -200,7 +202,6 @@ No comments submitted.
 </div>
 
 <?php endforeach; ?>
-
 
 <?php endif; ?>
 
@@ -248,7 +249,7 @@ Methodology
 </h3>
 
 <p>
-Responses marked as "Survey Preview" and responses below 50% completion
+Responses below 50% completion
 were excluded. Total submissions:
 <?= h($data["meta"]["total_submissions"]) ?>.
 Excluded incomplete:

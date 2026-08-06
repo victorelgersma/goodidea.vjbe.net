@@ -543,3 +543,54 @@ footer {
 
     border: 1px solid var(--border);
 }
+.mobile-comments-link {
+    display: none;
+}
+
+
+@media (max-width: 700px) {
+
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-comments-link {
+        display: inline-block;
+        margin-top: .5rem;
+        font-weight: 600;
+    }
+
+}
+
+
+/* Full-page comments view */
+
+.full-page-comments {
+    max-height: none;
+    overflow: visible;
+}
+
+
+@media (max-width:700px) {
+
+    .full-page-comments {
+        max-height: none;
+        overflow: visible;
+    }
+
+}
+
+.back-home {
+    margin: 0.5rem 0 1.5rem;
+    font-size: 0.9rem;
+}
+
+.back-home a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-home a:hover {
+    text-decoration: underline;
+}

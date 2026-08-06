@@ -15,6 +15,7 @@ REMOTE_DIR="~/html/agoodidea"
 FILES=(
     "index.php"
     "dashboard.php"
+    "comments.php"
     "dashboard.json"
     "style.css"
 )
@@ -40,6 +41,7 @@ echo "==> Uploading PHP files..."
 rsync -avz --inplace \
     "${SCRIPT_DIR}/index.php" \
     "${SCRIPT_DIR}/dashboard.php" \
+    "${SCRIPT_DIR}/comments.php" \
     "${REMOTE_HOST}:${REMOTE_DIR}/"
 
 echo "==> Uploading generated data and styles..."

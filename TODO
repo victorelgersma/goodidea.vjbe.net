@@ -1,0 +1,3 @@
+
+- [ ] refactor it so that the dashboard accesses the anonymized data
+- [ ] don't upload dashboard.json to the damn server

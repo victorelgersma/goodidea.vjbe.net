@@ -23,17 +23,20 @@ if (!isset($page)) {
         h1 {
             font-size: 4rem;
         }
+
+
+        .id {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: #ff5c35;
+            /* pick an accent color from your palette */
+            letter-spacing: 0.05em;
+        }
+        header {
+            text-align: center;
+        }
     </style>
 </head>
-<header>
 
-<center>
-
-    <img src="https://img.vjbe.net/phone.svg" height="100px" />
-    <h1>
-        a good ID(ea)
-    </h1>
-</header>
-</center>
 
 <body>

@@ -54,7 +54,7 @@ include "includes/header.php";
             <?php foreach ($comments as $comment): ?>
 
                 <div class="comment-card">
-                    <?= h($comment) ?>
+                    <?= h("$comment") ?>
                 </div>
 
             <?php endforeach; ?>

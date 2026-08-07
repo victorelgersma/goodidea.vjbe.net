@@ -1,3 +1,4 @@
-
-- [ ] refactor it so that the dashboard accesses the anonymized data
-- [ ] don't upload dashboard.json to the damn server
+- [ ] refactor it so that the dashboard accesses only anonymized data
+- [ ] add names next to comments 
+- [ ] fix my python script to get BOTH name AND email addresses in one line. 
+- [ ] add QR code to the surveys 

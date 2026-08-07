@@ -26,7 +26,7 @@ if (file_exists($json_file)) {
     <h1 class="left" style="font-family: cursive">
         good <br> <span class="id" style="font-family: Baskerville">ID</span>ea
     </h1>
-    <img src="https://img.vjbe.net/phone.svg" height="100px" alt="Illustration of a smartphone" />
+    <img src="https://img.vjbe.net/phone.svg" height="100px" alt="" />
 
 </header>
 

@@ -42,18 +42,21 @@ if (file_exists($json_file)) {
         </p>
 
 
-        <div class="hero-actions">
 
-            <a class="button primary" href="/dashboard.php">
-                View survey results
-            </a>
+<div class="hero-actions">
 
-            <a class="button secondary" href="https://survey.uu.nl/jfe/form/SV_eWjarcbWuvJP2Z0" target="_blank"
-                rel="noopener">
-                Fill in the survey
-            </a>
+    <a class="button primary" href="/dashboard.php">
+        View survey results
+    </a>
 
-        </div>
+    <a class="button secondary"
+        href="https://survey.uu.nl/jfe/form/SV_eWjarcbWuvJP2Z0"
+        target="_blank"
+        rel="noopener">
+        Fill in the survey
+    </a>
+
+</div>
 
         <?php if ($responses !== null): ?>
 
@@ -70,6 +73,7 @@ if (file_exists($json_file)) {
             </div>
 
         <?php endif; ?>
+
 
 
     </section>
@@ -89,18 +93,18 @@ if (file_exists($json_file)) {
             with an internet connection are asked to <a
                 href="https://students.uu.nl/en/practical-information/enrolment/digital-student-card/frequently-asked-questions"
                 target="_blank" rel="noopener">print
-                out a certificate of enrollment </a> using OSIRIS, which has proven to be an inconvenient alternative as
-            it is cumbersome to carry and often not recognized in practice.
+                out a certificate of enrollment </a> using OSIRIS.
         </p>
         <p>
-            We believe students should be able to choose how they identify themselves. Offering only a digital student
+            It is time to recognize that this decision was a mistake. Offering only a digital student
             card effectively requires students to carry an internet-connected device, even when a physical card would
-            better suit their needs.
+            better suit their needs. We believe that students should be able to easily identify themselves without using a smartphone. 
         </p>
 
-        <p>Our <a href="/dashboard.php">survey</a> shows that students broadly support the re-introduction of an optional physical student card and are even willing to pay a small fee to cover the cost </p>
-
     </div>
+
+
+
 
 
     <div class="card">
@@ -141,33 +145,21 @@ if (file_exists($json_file)) {
 
     </div>
 
-         <div class="card">
+            <div class="card">
 
-                <h2>
-                    Need a physical card right now?
-                </h2>
+<span class="convenience-notice-label">
+    Need something physical in the meantime?
+</span>
 
-                <p>
-                    While we campaign for an official optional physical student card,
-                    we have created an unofficial convenience card: a pocket-sized
-                    laminated copy of your enrollment certificate.
-                </p>
+<span class="convenience-notice-text">
+    We've made an unofficial, pocket-sized convenience card from your enrollment certificate.
+</span>
 
-                <p>
-                    It is not issued by Utrecht University and is not a replacement for
-                    an official student card. However, it can make it easier to carry
-                    proof of your student status without folding around an A4 printout.
-                </p>
+<a href="https://studentcard.vjbe.net">
+    Learn more →
+</a>
 
-                <p>
-                    You can request one here:
-                    <a href="https://studentcard.vjbe.net">
-                        Unofficial Convenience Card
-                    </a>
-                </p>
-
-            </div>
-
+</div>
 
 </div>
 

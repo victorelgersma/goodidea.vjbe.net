@@ -5,7 +5,7 @@ import csv
 from pathlib import Path
 
 
-# Qualtrics metadata/direct-identifying fields to remove.
+# Fields that should not appear in the public dataset.
 REMOVE_FIELDS = {
     "StartDate",
     "EndDate",
@@ -20,11 +20,9 @@ REMOVE_FIELDS = {
     "LocationLongitude",
     "DistributionChannel",
     "Status",
-}
-
-# Direct-identifying survey fields in this particular survey.
-REMOVE_SURVEY_FIELDS = {
-    "Q9",  # optional name
+    "Progress",
+    "Duration (in seconds)",
+    "Q9",   # optional name
     "Q11",  # optional email address
 }
 
@@ -34,12 +32,11 @@ def anonymize_csv(input_path: Path, output_path: Path) -> None:
         reader = csv.reader(infile)
         rows = list(reader)
 
-    if not rows:
-        raise ValueError("CSV is empty.")
+    if len(rows) < 4:
+        raise ValueError("CSV does not contain any survey responses.")
 
     headers = rows[0]
 
-    # Find columns used for filtering responses.
     try:
         distribution_index = headers.index("DistributionChannel")
     except ValueError:
@@ -50,39 +47,37 @@ def anonymize_csv(input_path: Path, output_path: Path) -> None:
     except ValueError:
         raise ValueError("Could not find the 'Progress' column.")
 
-    # Determine which columns to retain.
+    # Determine which columns to keep.
     keep_indices = []
 
     for i, header in enumerate(headers):
-        # Explicitly removed fields.
         if header in REMOVE_FIELDS:
             continue
 
-        # Direct-identifying survey questions.
-        if header in REMOVE_SURVEY_FIELDS:
-            continue
-
-        # Defensive removal of any date/time columns.
+        # Remove any date/time fields as a precaution.
         header_lower = header.lower()
         if "date" in header_lower or "time" in header_lower:
             continue
 
         keep_indices.append(i)
 
-    # Process rows.
-    output_rows = []
+    # Qualtrics rows:
+    #   0 = machine-readable column names
+    #   1 = human-readable question labels
+    #   2 = ImportId metadata
+    #
+    # Use the human-readable question labels as the public headers.
+    question_headers = rows[1]
 
-    for row_number, row in enumerate(rows):
+    output_headers = [
+        question_headers[i] if i < len(question_headers) else ""
+        for i in keep_indices
+    ]
 
-        # Qualtrics has three non-response/header rows:
-        #   0 = column names
-        #   1 = human-readable question labels
-        #   2 = ImportId metadata
-        if row_number < 3:
-            output_rows.append(row)
-            continue
+    output_rows = [output_headers]
 
-        # Skip malformed/empty rows.
+    # Process survey responses.
+    for row in rows[3:]:
         if len(row) <= progress_index:
             continue
 
@@ -95,29 +90,24 @@ def anonymize_csv(input_path: Path, output_path: Path) -> None:
             continue
 
         # Remove responses with Progress < 50.
-        progress_value = row[progress_index].strip()
-
         try:
-            progress = float(progress_value)
+            progress = float(row[progress_index].strip())
         except ValueError:
-            # If Progress isn't a valid number, don't include the response.
             continue
 
         if progress < 50:
             continue
 
-        # Keep the response.
-        output_rows.append(row)
+        # Preserve the original survey answer strings.
+        output_rows.append([
+            row[i] if i < len(row) else ""
+            for i in keep_indices
+        ])
 
-    # Write anonymized CSV.
+    # Write the anonymized CSV.
     with output_path.open("w", encoding="utf-8", newline="") as outfile:
         writer = csv.writer(outfile)
-
-        for row in output_rows:
-            writer.writerow([
-                row[i] if i < len(row) else ""
-                for i in keep_indices
-            ])
+        writer.writerows(output_rows)
 
     print(f"Anonymized CSV written to: {output_path}")
 
@@ -130,14 +120,14 @@ def main():
     parser.add_argument(
         "input",
         type=Path,
-        help="Input Qualtrics CSV file"
+        help="Input Qualtrics CSV file",
     )
 
     parser.add_argument(
         "-o",
         "--output",
         type=Path,
-        help="Output CSV file (default: <input>_anonymized.csv)"
+        help="Output CSV file (default: <input>_anonymized.csv)",
     )
 
     args = parser.parse_args()

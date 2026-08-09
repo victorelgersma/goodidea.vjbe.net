@@ -129,8 +129,8 @@ if (file_exists($json_file)) {
 
                 <li>
                     Prefer not to fill out an online form? You can print out a <a
-                        href="https://samizdat.vjbe.net/2026-08-04-Enqu%C3%AAte%20Studentenkaart.pdf"> Dutch </a> or <a
-                        href="https://samizdat.vjbe.net/2026-08-04-Student%20Card%20Survey.pdf"> English</a> version of
+                        href="https://samizdat.vjbe.net/2026-08-09-Enqu%C3%AAte%20Studentenkaart.pdf"> Dutch </a> or <a
+                        href="https://samizdat.vjbe.net/2026-08-09-Student%20Card%20Survey.pdf"> English</a> version of
                     our survey, fill it out, and send a scan to <a
                         href="mailto:agoodidea@vjbe.net">agoodidea@vjbe.net</a>
                 </li>

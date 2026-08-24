@@ -50,10 +50,6 @@ a {
   margin: 0 auto;
 }
 
-/* --------------------------------
-   Header
--------------------------------- */
-
 .page-header,
 .hero {
   text-align: center;
@@ -65,7 +61,6 @@ a {
 
 .page-header h1 {
   margin: 0;
-
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 850;
   line-height: 1.1;
@@ -75,24 +70,17 @@ a {
 .page-header h2 {
   max-width: 700px;
   margin: 0.5rem auto 0.75rem;
-
   font-size: clamp(1rem, 2vw, 1.3rem);
   font-weight: 500;
   line-height: 1.4;
-
   color: var(--muted);
 }
 
 .page-header p {
   margin: 0;
-
   font-size: 0.85rem;
   color: var(--muted);
 }
-
-/* --------------------------------
-   Landing page
--------------------------------- */
 
 .hero {
   padding-bottom: 1.5rem;
@@ -100,7 +88,6 @@ a {
 
 .hero h1 {
   margin: 0 0 1rem;
-
   font-size: clamp(2.5rem, 6vw, 4rem);
   line-height: 1;
   letter-spacing: -0.05em;
@@ -109,39 +96,34 @@ a {
 .hero-tagline {
   max-width: 720px;
   margin: 0 auto;
-
   font-size: 1.2rem;
   line-height: 1.5;
-
   color: var(--muted);
 }
 
 .hero-actions {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   gap: 0.75rem;
-
   margin-top: 1.75rem;
 }
 
-/* --------------------------------
-   Buttons
--------------------------------- */
+.hero-actions .button {
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+}
 
 .button {
   display: inline-block;
-
   padding: 0.75rem 1.25rem;
-
   border: 1px solid transparent;
   border-radius: 999px;
-
   font-family: var(--sans);
   font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
-
   transition: transform 0.15s ease;
 }
 
@@ -160,10 +142,6 @@ a {
   border-color: var(--border);
 }
 
-/* --------------------------------
-   Summary
--------------------------------- */
-
 .summary {
   margin: 1rem 0 2rem;
   text-align: center;
@@ -171,25 +149,18 @@ a {
 
 .summary .count {
   display: block;
-
   font-size: clamp(2.4rem, 5vw, 3.4rem);
   font-weight: 850;
   line-height: 1;
   letter-spacing: -0.04em;
-
   color: var(--accent);
 }
 
 .summary .label {
   display: block;
   margin-top: 0.4rem;
-
   color: var(--muted);
 }
-
-/* --------------------------------
-   Grid
--------------------------------- */
 
 .grid {
   display: grid;
@@ -203,14 +174,9 @@ a {
   grid-column: 1 / -1;
 }
 
-/* --------------------------------
-   Cards
--------------------------------- */
-
 .card {
   min-width: 0;
   padding: 1.25rem;
-
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -218,22 +184,52 @@ a {
 
 .card h2 {
   margin: 0 0 0.35rem;
-
   font-size: 1rem;
   line-height: 1.35;
 }
 
 .card .sub {
   margin: 0 0 1rem;
-
   font-family: var(--sans);
   font-size: 0.82rem;
   line-height: 1.45;
-
   color: var(--muted);
 }
 
-/* Highlight the reasons card */
+.card p {
+  margin: 0 0 0.75rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.card ul {
+  margin: 0;
+  padding-left: 1.25rem;
+
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.card li {
+  margin-bottom: 0.6rem;
+}
+
+.card li:last-child {
+  margin-bottom: 0;
+}
+
+.card li ul {
+  margin: 0.5rem 0 0;
+
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.card li ul li {
+  margin-bottom: 0.4rem;
+}
 
 .card[data-qnum="Q2"] {
   border-top: 3px solid var(--accent);
@@ -247,10 +243,6 @@ a {
   height: 400px;
 }
 
-/* --------------------------------
-   Charts
--------------------------------- */
-
 .chart-box {
   position: relative;
   height: 300px;
@@ -260,18 +252,12 @@ a {
   height: 360px;
 }
 
-/* --------------------------------
-   Comments
--------------------------------- */
-
 .comment-list {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-
   max-height: 360px;
   padding-right: 0.25rem;
-
   overflow-y: auto;
 }
 
@@ -282,14 +268,11 @@ a {
 
 .comment-card {
   padding: 0.8rem 0.9rem;
-
   background: #fafafa;
   border-left: 3px solid var(--accent);
   border-radius: 8px;
-
   font-size: 0.9rem;
   line-height: 1.55;
-
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
@@ -299,10 +282,6 @@ a {
   font-size: 0.9rem;
   font-style: italic;
 }
-
-/* --------------------------------
-   Reasons
--------------------------------- */
 
 .reason-list {
   display: flex;
@@ -325,17 +304,14 @@ a {
 
 .reason-bar-wrap {
   grid-column: 1;
-
   height: 8px;
   overflow: hidden;
-
   background: #e5e7eb;
   border-radius: 999px;
 }
 
 .reason-bar {
   height: 100%;
-
   background: var(--accent);
   border-radius: inherit;
 }
@@ -343,53 +319,35 @@ a {
 .reason-count {
   grid-column: 2;
   grid-row: 1 / span 2;
-
   font-family: var(--sans);
   font-size: 0.9rem;
   font-weight: 700;
-
   color: var(--accent);
 }
-
-/* --------------------------------
-   Contact
--------------------------------- */
 
 .contact-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-
   margin-top: 0.5rem;
 }
 
 .contact-pill {
   padding: 0.45rem 0.9rem;
-
   background: var(--accent-soft);
   border-radius: 999px;
-
   color: var(--accent);
-
   font-family: var(--sans);
   font-size: 0.82rem;
   font-weight: 650;
-
   white-space: nowrap;
 }
-
-/* --------------------------------
-   Methodology
--------------------------------- */
 
 .methodology {
   margin-top: 2.5rem;
   padding-top: 1.25rem;
-
   border-top: 1px solid var(--border);
-
   color: var(--muted);
-
   font-family: var(--sans);
   font-size: 0.85rem;
   line-height: 1.6;
@@ -397,9 +355,7 @@ a {
 
 .methodology h3 {
   margin: 0 0 0.5rem;
-
   color: var(--text);
-
   font-size: 0.95rem;
 }
 
@@ -407,27 +363,33 @@ a {
   margin: 0;
 }
 
-/* --------------------------------
-   Footer
--------------------------------- */
-
 footer {
   margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
 
   color: var(--muted);
-
   font-family: var(--sans);
   font-size: 0.78rem;
   text-align: center;
 }
 
-/* --------------------------------
-   Back home
--------------------------------- */
+footer h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+footer p {
+  margin: 0 0 0.35rem;
+}
+
+footer p:last-child {
+  margin-bottom: 0;
+}
 
 .back-home {
   margin: 0.5rem 0 1.5rem;
-
   font-family: var(--sans);
   font-size: 0.9rem;
 }
@@ -441,28 +403,33 @@ footer {
   text-decoration: underline;
 }
 
-/* --------------------------------
-   Convenience card CTA
--------------------------------- */
-
+.about-card,
 .convenience-card-cta {
   max-width: 760px;
   margin: 1.5rem auto;
   padding: 1.75rem 2rem;
-
   text-align: center;
-
   background: white;
-  border: 2px solid var(--orange);
   border-radius: var(--radius);
 }
 
+.about-card:first-child,
+.convenience-card-cta:first-child {
+  margin-top: 0;
+}
+
+.about-card {
+  border: 2px solid var(--accent);
+}
+
+.convenience-card-cta {
+  border: 2px solid var(--orange);
+}
+
+.about-card-eyebrow,
 .convenience-card-eyebrow {
   display: block;
   margin-bottom: 0.4rem;
-
-  color: var(--orange);
-
   font-family: var(--sans);
   font-size: 0.75rem;
   font-weight: 800;
@@ -470,22 +437,38 @@ footer {
   text-transform: uppercase;
 }
 
+.about-card-eyebrow {
+  color: var(--accent);
+}
+
+.convenience-card-eyebrow {
+  color: var(--orange);
+}
+
+.about-card h2,
 .convenience-card-cta h2 {
   margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
 
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.04em;
+.about-card > p,
+.convenience-card-cta p {
+  max-width: 580px;
+  margin: 0.75rem auto 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
 }
 
 .convenience-card-cta p {
-  max-width: 580px;
-  margin: 0.75rem auto 1.25rem;
+  margin-bottom: 1.25rem;
+}
 
-  color: var(--muted);
-
-  font-size: 1rem;
-  line-height: 1.5;
+.about-card .button,
+.convenience-card-cta .button {
+  margin-top: 1.25rem;
 }
 
 .convenience-card-button {
@@ -493,9 +476,45 @@ footer {
   color: white;
 }
 
-/* --------------------------------
-   Convenience notice
--------------------------------- */
+.about-card-body {
+  max-width: 560px;
+  margin: 1.5rem auto 0;
+  text-align: left;
+}
+
+.about-card-body p {
+  margin: 0 0 0.75rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.about-card-body ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.about-card-body li {
+  margin-bottom: 0.6rem;
+}
+
+.about-card-body li:last-child {
+  margin-bottom: 0;
+}
+
+.about-card-body li ul {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.about-card-body li ul li {
+  margin-bottom: 0.4rem;
+}
 
 .convenience-notice {
   display: flex;
@@ -503,17 +522,13 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 0.35rem 0.7rem;
-
   max-width: 850px;
   margin: 0 auto 1.5rem;
   padding: 0.75rem 1rem;
-
   background: white;
   border: 1px solid var(--border);
   border-radius: 8px;
-
   color: var(--muted);
-
   font-family: var(--sans);
   font-size: 0.82rem;
   line-height: 1.4;
@@ -533,18 +548,9 @@ footer {
   text-decoration: underline;
 }
 
-/* --------------------------------
-   Logo
--------------------------------- */
-
-
 .id {
   font-family: Baskerville, serif;
 }
-
-/* --------------------------------
-   Mobile
--------------------------------- */
 
 @media (max-width: 700px) {
   body {
@@ -654,15 +660,14 @@ footer {
   }
 }
 
-/* --------------------------------
-   Logo
--------------------------------- */
-
 header.flex {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+
+  padding-top: 1.5rem;
   text-align: center;
 }
 
@@ -670,9 +675,7 @@ header.flex {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin: 0;
-
   font-family: cursive;
   line-height: 0.8;
 }
@@ -680,8 +683,4 @@ header.flex {
 .idea {
   display: flex;
   align-items: baseline;
-}
-
-.id {
-  font-family: Baskerville, serif;
 }

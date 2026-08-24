@@ -12,55 +12,68 @@ $title = "About – A good ID(ea)";
         <p class="back-home">
             <a href="index.php">← Back home</a>
         </p>
-
-        <h2>
-            About the campaign
-        </h2>
     </header>
 
-    <section class="hero">
+    <div class="about-card">
 
-        <p class="hero-tagline">
+        <span class="about-card-eyebrow">
+            The campaign
+        </span>
+
+        <h2>
+            Bring back an optional physical student card
+        </h2>
+
+        <p>
             A student-led campaign to re-introduce an optional physical student card alongside the existing <a
                 href="https://students.uu.nl/en/practical-information/enrolment/student-card" target="_blank"
-                rel="noopener"> digital student card</a> at Utrecht University.
+                rel="noopener">digital student card</a> at Utrecht University.
         </p>
 
-    </section>
+    </div>
 
-    <div class="card">
+    <div class="about-card">
+
+        <span class="about-card-eyebrow">
+            Get involved
+        </span>
 
         <h2>
             How can I help?
         </h2>
 
-        <p>Are you interested in helping the campaign? Great! Here are some ways to help us:</p>
-        <ul>
+        <div class="about-card-body">
 
-            <li>
-                E-mail the university council (U-raad) at <a href="mailto:studentenuraad@uu.nl">studentenuraad@uu.nl</a>
-                and explain why this issue matters to you.
-            </li>
+            <p>Are you interested in helping the campaign? Great! Here are some ways to help us:</p>
 
-            <li>
-                Fill in our <a href="https://card.vjbe.net/survey">online survey</a> and encourage others to do so.
+            <ul>
 
-                <ul>
-                    <li>
-                        Prefer not to fill out an online form? You can print out a <a
-                            href="https://samizdat.vjbe.net/2026-08-09-Enqu%C3%AAte%20Studentenkaart.pdf"> Dutch </a> or <a
-                            href="https://samizdat.vjbe.net/2026-08-09-Student%20Card%20Survey.pdf"> English</a> version of
-                        our survey, fill it out, and send a scan to <a
-                            href="mailto:agoodidea@vjbe.net">agoodidea@vjbe.net</a>
-                    </li>
-                </ul>
-            </li>
+                <li>
+                    E-mail the university council (U-raad) at <a href="mailto:studentenuraad@uu.nl">studentenuraad@uu.nl</a>
+                    and explain why this issue matters to you.
+                </li>
 
-            <li>
-                Share this website with your UU-friends!
-            </li>
+                <li>
+                    Fill in our <a href="https://card.vjbe.net/survey">online survey</a> and encourage others to do so.
 
-        </ul>
+                    <ul>
+                        <li>
+                            Prefer not to fill out an online form? You can print out a <a
+                                href="https://samizdat.vjbe.net/2026-08-09-Enqu%C3%AAte%20Studentenkaart.pdf"> Dutch </a> or <a
+                                href="https://samizdat.vjbe.net/2026-08-09-Student%20Card%20Survey.pdf"> English</a> version of
+                            our survey, fill it out, and send a scan to <a
+                                href="mailto:agoodidea@vjbe.net">agoodidea@vjbe.net</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    Share this website with your UU-friends!
+                </li>
+
+            </ul>
+
+        </div>
 
     </div>
 

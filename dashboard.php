@@ -1,4 +1,3 @@
-
 <?php
 $page = "results";
 $title = "Results – A good ID(ea)";
@@ -68,7 +67,7 @@ function h($value) {
 
 <!-- Q1 -->
 
-<div class="card" data-qnum="Q1">
+<div class="card full" data-qnum="Q1">
 
 <h2>
 <?= h($data["questions"]["Q1"]) ?>
@@ -265,6 +264,8 @@ Excluded incomplete:
 
 <script>
 
+document.addEventListener("DOMContentLoaded", function () {
+
 const dashboard = <?= json_encode($data, JSON_UNESCAPED_UNICODE); ?>;
 
 
@@ -389,6 +390,7 @@ new Chart(
     }
 );
 
+});
 
 </script>
 

@@ -70,9 +70,8 @@ $title = "About – A good ID(ea)";
                 <li>
                     Share this website with your UU-friends!
                 </li>
-
+                <li> <a href="https://drive.vjbe.net/2026-08-24-agood-idea-posters/">Print some posters</a> and hang them up in campus</li>
             </ul>
-
         </div>
 
     </div>
@@ -86,6 +85,8 @@ $title = "About – A good ID(ea)";
         <h2>
             An unofficial convenience card
         </h2>
+
+        <img src="https://img.vjbe.net/id-front.webp" alt="The front of the unofficial convenience card" />
 
         <p>
             We've made an unofficial, pocket-sized convenience card from your enrollment certificate.

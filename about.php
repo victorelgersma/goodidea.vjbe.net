@@ -70,7 +70,7 @@ $title = "About – A good ID(ea)";
                 <li>
                     Share this website with your UU-friends!
                 </li>
-                <li> <a href="https://drive.vjbe.net/2026-08-24-agood-idea-posters/">Print some posters</a> and hang them up in campus</li>
+                <li> <a href="https://drive.vjbe.net/2026-08-24-agood-idea-posters/">Print some posters</a> and hang them up around campus</li>
             </ul>
         </div>
 

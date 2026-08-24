@@ -19,7 +19,11 @@ if (!isset($page)) {
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=1" />
+    <?php
+    $style_path = __DIR__ . "/../style.css";
+    $style_version = @filemtime($style_path) ?: time();
+    ?>
+    <link rel="stylesheet" href="style.css?v=<?= $style_version ?>" />
 
     <?php if (!empty($chartjs)): ?>
         <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>

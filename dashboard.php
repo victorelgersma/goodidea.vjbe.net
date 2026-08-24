@@ -44,6 +44,8 @@ function h($value) {
         Student responses regarding an optional physical student card
     </h2>
 
+    <p> <a href="results_anonymized.csv" download> Download the anonymised survey data ↓ </a> </p>
+
 </header>
 
 
@@ -134,9 +136,6 @@ Would students request an optional physical card?
 <?= h($data["questions"]["Q4"]) ?>
 </h2>
 
-<p class="sub">
-Willingness to contribute to printing costs
-</p>
 
 
 <div class="chart-box">

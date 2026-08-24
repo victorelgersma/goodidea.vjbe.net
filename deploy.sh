@@ -18,6 +18,7 @@ FILES=(
     "comments.php"
     "dashboard.json"
     "style.css"
+    "data-anonymized/2026-08-03/results_anonymized.csv"
 )
 
 echo "==> Checking local files..."
@@ -42,6 +43,7 @@ rsync -avz --inplace \
     "${SCRIPT_DIR}/index.php" \
     "${SCRIPT_DIR}/dashboard.php" \
     "${SCRIPT_DIR}/comments.php" \
+    "${SCRIPT_DIR}/data-anonymized/2026-08-03/results_anonymized.csv" \
     "${REMOTE_HOST}:${REMOTE_DIR}/"
 
 echo "==> Uploading generated data and styles..."

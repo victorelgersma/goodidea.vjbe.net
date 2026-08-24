@@ -23,10 +23,14 @@ if (file_exists($json_file)) {
 
 
 <header class="flex">
-    <h1 class="left" style="font-family: cursive">
-        good <br> <span class="id" style="font-family: Baskerville">ID</span>ea
+    <h1 class="left goodidea">
+        <span class="good">good</span>
+
+        <span class="idea">
+            <span class="id">ID</span><span>ea</span>
+        </span>
     </h1>
-    <img src="https://img.vjbe.net/phone.svg" height="100px" alt="" />
+    <img src="https://img.vjbe.net/phone.svg" height="100" alt="" />
 
 </header>
 
@@ -36,27 +40,25 @@ if (file_exists($json_file)) {
     <section class="hero">
 
         <p class="hero-tagline">
-            A student-led campaign to re-introduce an (optional) physical student card alongside the existing <a
+            A student-led campaign to re-introduce an optional physical student card alongside the existing <a
                 href="https://students.uu.nl/en/practical-information/enrolment/student-card" target="_blank"
-                rel="noopener"> digital student card</a>, at the Universiteit Utrecht.
+                rel="noopener"> digital student card</a> at Utrecht University. 
         </p>
 
 
 
-<div class="hero-actions">
+        <div class="hero-actions">
 
-    <a class="button primary" href="/dashboard.php">
-        View survey results
-    </a>
+            <a class="button primary" href="/dashboard.php">
+                View survey results
+            </a>
 
-    <a class="button secondary"
-        href="https://survey.uu.nl/jfe/form/SV_eWjarcbWuvJP2Z0"
-        target="_blank"
-        rel="noopener">
-        Fill in the survey
-    </a>
+            <a class="button secondary" href="https://survey.uu.nl/jfe/form/SV_eWjarcbWuvJP2Z0" target="_blank"
+                rel="noopener">
+                Fill in the survey
+            </a>
 
-</div>
+        </div>
 
         <?php if ($responses !== null): ?>
 
@@ -77,32 +79,6 @@ if (file_exists($json_file)) {
 
 
     </section>
-
-
-
-    <div class="card">
-
-        <h2>
-            Why an (optional) physical ID?
-        </h2>
-
-        <p>
-            Since the 1 June 2017, Utrecht University stopped providing a physical student card, becoming the first and
-            only university in the Netherlands to have a digital-only student card policy. Students who prefer not to
-            carry a smartphone
-            with an internet connection are asked to <a
-                href="https://students.uu.nl/en/practical-information/enrolment/digital-student-card/frequently-asked-questions"
-                target="_blank" rel="noopener">print
-                out a certificate of enrollment </a> using OSIRIS.
-        </p>
-        <p>
-            It is time to recognize that this decision was a mistake. Offering only a digital student
-            card effectively requires students to carry an internet-connected device, even when a physical card would
-            better suit their needs. We believe that students should be able to easily identify themselves without using a smartphone. 
-        </p>
-
-    </div>
-
 
 
 
@@ -140,26 +116,26 @@ if (file_exists($json_file)) {
                 Share this website with your UU-friends!
             </li>
             <li> Follow us on instagram <a href="https://www.instagram.com/good.id.ea/">@good.id.ea</a>!</li>
-           
+
         </ul>
 
     </div>
 
-            <div class="card">
+    <div class="card">
 
-<span class="convenience-notice-label">
-    Need something physical in the meantime?
-</span>
+        <span class="convenience-notice-label">
+            Need something physical in the meantime?
+        </span>
 
-<span class="convenience-notice-text">
-    We've made an unofficial, pocket-sized convenience card from your enrollment certificate.
-</span>
+        <span class="convenience-notice-text">
+            We've made an unofficial, pocket-sized convenience card from your enrollment certificate.
+        </span>
 
-<a href="https://studentcard.vjbe.net">
-    Learn more →
-</a>
+        <a href="https://studentcard.vjbe.net">
+            Learn more →
+        </a>
 
-</div>
+    </div>
 
 </div>
 

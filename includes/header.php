@@ -18,7 +18,7 @@ if (!isset($page)) {
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php endif; ?>
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=1" />
     <style>
         h1 {
             font-size: 4rem;
@@ -31,9 +31,6 @@ if (!isset($page)) {
             color: #ff5c35;
             /* pick an accent color from your palette */
             letter-spacing: 0.05em;
-        }
-        header {
-            text-align: center;
         }
     </style>
 </head>

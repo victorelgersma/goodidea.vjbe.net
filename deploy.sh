@@ -14,6 +14,7 @@ REMOTE_DIR="~/html/agoodidea"
 
 FILES=(
     "index.php"
+    "about.php"
     "dashboard.php"
     "comments.php"
     "dashboard.json"
@@ -41,6 +42,7 @@ ssh "$REMOTE_HOST" "mkdir -p $REMOTE_DIR/includes"
 echo "==> Uploading PHP files..."
 rsync -avz --inplace \
     "${SCRIPT_DIR}/index.php" \
+    "${SCRIPT_DIR}/about.php" \
     "${SCRIPT_DIR}/dashboard.php" \
     "${SCRIPT_DIR}/comments.php" \
     "${SCRIPT_DIR}/data-anonymized/2026-08-03/results_anonymized.csv" \

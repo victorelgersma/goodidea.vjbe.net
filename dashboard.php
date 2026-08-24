@@ -56,7 +56,7 @@ function h($value) {
     </span>
 
     <span class="label">
-        valid responses
+        responses
     </span>
 
 </div>

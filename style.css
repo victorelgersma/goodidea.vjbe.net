@@ -537,19 +537,6 @@ footer {
    Logo
 -------------------------------- */
 
-.goodidea {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  font-family: cursive;
-  line-height: 0.8;
-}
-
-.idea {
-  display: flex;
-  align-items: baseline;
-}
 
 .id {
   font-family: Baskerville, serif;

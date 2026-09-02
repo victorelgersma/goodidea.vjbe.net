@@ -45,6 +45,7 @@ rsync -avz --inplace \
     "${SCRIPT_DIR}/about.php" \
     "${SCRIPT_DIR}/dashboard.php" \
     "${SCRIPT_DIR}/comments.php" \
+    "${SCRIPT_DIR}/more-details.php" \
     "${SCRIPT_DIR}/data-anonymized/2026-08-03/results_anonymized.csv" \
     "${REMOTE_HOST}:${REMOTE_DIR}/"
 

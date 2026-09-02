@@ -42,7 +42,7 @@ if (file_exists($json_file)) {
 
 
             <a class="button secondary" href="/about.php">
-                About
+            What do we want? 
             </a>
 
             <a class="button primary" href="https://survey.uu.nl/jfe/form/SV_eWjarcbWuvJP2Z0" target="_blank"

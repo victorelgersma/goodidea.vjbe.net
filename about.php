@@ -25,10 +25,12 @@ $title = "About – A good ID(ea)";
         </h2>
 
         <p>
-            A student-led campaign to re-introduce an optional physical student card alongside the existing <a
-                href="https://students.uu.nl/en/practical-information/enrolment/student-card" target="_blank"
-                rel="noopener">digital student card</a> at Utrecht University.
-        </p>
+            UU students should not be forced to carry a smartphone at all times. The current offline solution (printing an enrolment certificate) is impractical. Therefore, bringing back an optional, physical student card will be beneficial to the student body.
+         </p>
+           <a class="button secondary" href="more-details.php">
+           More details →
+        </a>
+
 
     </div>
 
@@ -70,7 +72,7 @@ $title = "About – A good ID(ea)";
                 <li>
                     Share this website with your UU-friends!
                 </li>
-                <li> <a href="https://drive.vjbe.net/2026-08-24-agood-idea-posters/">Print some posters</a> and hang them up around campus</li>
+                <li> <a href="https://drive.vjbe.net/2026-09-02-goodidea-posters/">Print some posters</a> and hang them up around campus</li>
             </ul>
         </div>
 
